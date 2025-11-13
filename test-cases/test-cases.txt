@@ -124,3 +124,55 @@ We will test a successful redemption and a failed redemption due to an insuffici
         ```
 *   **Expected Results:**
     - The command returns a `400 Bad Request` status with the error message: `{"error": "Insufficient redeemable credits"}`.
+
+---
+
+### 4. List and Filter Students
+
+**How to Test:**
+We will test fetching all students and filtering them by username and email. These tests assume the initial setup has been completed.
+
+#### Test 4.1: Get All Students
+*   **Steps to Execute:**
+    1.  Request the list of all students.
+        ```bash
+        curl http://127.0.0.1:5000/students
+        ```
+*   **Expected Results:**
+    - The command returns a `200 OK` status and a JSON array containing the three student objects (Alice, Bob, Charlie).
+
+#### Test 4.2: Filter by Username (Partial Match)
+*   **Steps to Execute:**
+    1.  Search for students with "ali" in their username.
+        ```bash
+        curl "http://127.0.0.1:5000/students?username=ali"
+        ```
+*   **Expected Results:**
+    - The command returns a `200 OK` status and a JSON array containing only Alice's student object.
+
+#### Test 4.3: Filter by Email (Case-Insensitive)
+*   **Steps to Execute:**
+    1.  Search for a student with a case-variant email.
+        ```bash
+        curl "http://127.0.0.1:5000/students?email=BOB@EXAMPLE.COM"
+        ```
+*   **Expected Results:**
+    - The command returns a `200 OK` status and a JSON array containing only Bob's student object.
+
+#### Test 4.4: Filter with No Results
+*   **Steps to Execute:**
+    1.  Search for a student that does not exist.
+        ```bash
+        curl "http://127.0.0.1:5000/students?username=dave"
+        ```
+*   **Expected Results:**
+    - The command returns a `200 OK` status and an empty JSON array `[]`.
+
+#### Test 4.5: Filter by Username and Email
+*   **Steps to Execute:**
+    1.  Search for a student providing both username and email.
+        ```bash
+        curl "http://127.0.0.1:5000/students?username=char&email=charlie@example.com"
+        ```
+*   **Expected Results:**
+    - The command returns a `200 OK` status and a JSON array containing only Charlie's student object.

@@ -71,6 +71,39 @@ def create_student():
     except IntegrityError:
         db.session.rollback()
         return jsonify({"error": "Username or email already exists"}), 409
+    
+    
+    
+    
+@app.route('/students', methods=['GET'])
+def get_students():
+    """
+    Get a list of students, with optional filtering
+    by username or email.
+    """
+    # Get query parameters
+    username = request.args.get('username')
+    email = request.args.get('email')
+
+    # Start with a base query for all students
+    query = Student.query
+
+    if username:
+        # Use .ilike() for a case-insensitive partial search
+        query = query.filter(Student.username.ilike(f'%{username}%'))
+    
+    if email:
+        # Use func.lower() for a case-insensitive exact match
+        query = query.filter(func.lower(Student.email) == email.lower())
+
+    students = query.all()
+    
+    # Return a list of student dictionaries
+    return jsonify([student.to_dict() for student in students])
+
+
+
+
 
 @app.route('/students/<int:id>', methods=['GET'])
 def get_student(id):
