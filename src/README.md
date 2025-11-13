@@ -4,24 +4,22 @@ Boostly is a Flask-based REST API for a peer-to-peer recognition and rewards sys
 
 ## Setup Instructions
 
-### 1. Create a Virtual Environment
-First, create and activate a virtual environment to keep project dependencies isolated.
+### 1. Create a Conda Environment
+First, create and activate a Conda environment to keep project dependencies isolated.
 
 ```bash
-# For Windows
-python -m venv venv
-.\venv\Scripts\activate
+# Create a new Conda environment (e.g., named 'boostly-env')
+conda create --name boostly-env python=3.10
 
-# For macOS/Linux
-python3 -m venv venv
-source venv/bin/activate
+# Activate the environment
+conda activate boostly-env
 ```
 
 ### 2. Install Requirements
-Install the necessary Python packages using pip.
+Install the necessary Python packages using the `requirements.txt` file.
 
 ```bash
-pip install Flask Flask-SQLAlchemy APScheduler flask_apscheduler
+pip install -r src/requirements.txt
 ```
 
 ### 3. Initialize the Database
