@@ -1,0 +1,6 @@
+LLM Chat Export
+
+Replace this file with your exported LLM/AI assistant chat conversation.
+
+If you used LLMs or AI coding assistants (e.g., ChatGPT, Gemini Code Assist, Cursor AI), paste your complete conversation here.
+

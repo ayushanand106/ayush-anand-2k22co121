@@ -1,0 +1,9 @@
+Test Cases Documentation
+
+Replace this file with documentation on how to run each use case from the problem.
+
+For each core functionality (Recognition, Endorsements, Redemption), document:
+- How to test the feature
+- Steps to execute the test
+- Expected results
+
