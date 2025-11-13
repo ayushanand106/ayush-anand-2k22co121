@@ -2,7 +2,18 @@
 
 This document provides step-by-step instructions for manually testing the Boostly API's core functionalities using cURL.
 
-**Prerequisites:**
+**Automated Testing:**
+For convenience, a shell script `run_test.sh` is provided to automate all test cases described in this document. It handles database setup, running the server, executing tests, and providing a summary.
+
+To run the automated tests, execute the following command from your terminal:
+```bash
+bash run_test.sh
+```
+> **Note:** The script requires `jq` to be installed for parsing JSON responses.
+
+---
+
+**Prerequisites (for manual testing):**
 1. The Flask application is running.
 2. The database has been initialized (`flask db-create-all`).
 3. You have a command-line tool like cURL.
