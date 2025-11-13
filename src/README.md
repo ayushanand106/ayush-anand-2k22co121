@@ -26,18 +26,8 @@ pip install -r src/requirements.txt
 Create the SQLite database and tables using the custom Flask CLI command.
 
 ```bash
-# Set the Flask app environment variable
-# For Windows (cmd.exe)
-set FLASK_APP=src/app.py
-
-# For Windows (PowerShell)
-$env:FLASK_APP = "src/app.py"
-
-# For macOS/Linux
-export FLASK_APP=src/app.py
-
 # Run the database creation command
-flask db-create-all
+flask --app src/app db-create-all
 ```
 This will create a `boostly.db` file in the `src` directory.
 
@@ -45,7 +35,7 @@ This will create a `boostly.db` file in the `src` directory.
 To start the development server, run the following command:
 
 ```bash
-flask run
+flask --app src/app run
 ```
 The API will be available at `http://127.0.0.1:5000`.
 
