@@ -1,6 +1,841 @@
-LLM Chat Export
 
-Replace this file with your exported LLM/AI assistant chat conversation.
+# Boostly — boost morale, one kudos at a time
 
-If you used LLMs or AI coding assistants (e.g., ChatGPT, Gemini Code Assist, Cursor AI), paste your complete conversation here.
 
+
+Build a working application that enables college students to recognize their peers, allocate monthly credits, and redeem earned rewards. The platform should encourage appreciation and engagement across student communities — a simple, transparent system for celebrating contributions and converting recognition into tangible value.
+
+
+
+Use Python or Java as your programming language. You can choose any framework (e.g., Flask, FastAPI, Django for Python; Spring Boot for Java) and any database of your choice.
+
+
+
+## Core Functionality
+
+
+
+### 1. Recognition
+
+Allows one student to recognize another and transfer a certain number of credits.
+
+
+
+**Business Rules:**
+
+- Each student receives **100 credits every month** (reset at the start of each calendar month)
+
+- Students **cannot send credits to themselves** (self-recognition is not allowed)
+
+- Each student has a **monthly sending limit of 100 credits** (per calendar month)
+
+- A student cannot send more credits than they currently have in their balance
+
+- A student cannot exceed their monthly sending limit
+
+
+
+### 2. Endorsements
+
+Enables students to endorse an existing recognition entry (like/cheer).
+
+
+
+**Business Rules:**
+
+- Each endorser can endorse a recognition entry **only once**
+
+- Endorsements are just a count — they don't affect credit balances or any other functionality
+
+
+
+### 3. Redemption
+
+Lets students redeem the credits they've received.
+
+
+
+**Business Rules:**
+
+- Credits are converted into a fixed-value voucher at **₹5 per credit**
+
+- When credits are redeemed, they are **permanently deducted** from the student's balance
+
+- A student can only redeem credits they have received
+
+
+
+## Step-Up Challenges
+
+
+
+### 1. Credit Reset
+
+Add a mechanism to automatically reset each student's monthly credit balance to 100 at the start of a new month, with an optional carry-forward of up to 50 unused credits.
+
+
+
+**Business Rules:**
+
+- Each student's available credits reset to 100 at the start of each calendar month
+
+- Up to 50 unused credits from the previous month can be carried forward
+
+- If a student has more than 50 unused credits, only 50 can be carried forward
+
+- The monthly sending limit also resets to 100 credits
+
+
+
+### 2. Leaderboard
+
+Build a feature to list top recipients ranked by total credits received. Include both recognition counts and endorsement totals.
+
+
+
+**Business Rules:**
+
+- Rank students by total credits received (descending order)
+
+- If two students have the same total credits, rank by student ID (ascending order)
+
+- Include the total number of recognitions received by each student
+
+- Include the total number of endorsements received across all recognitions
+
+- Support a limit parameter to control how many top students are returned
+
+
+
+## Deliverables
+
+
+
+### Folder Structure
+
+Organize your submission using the following folder structure in your GitHub repository:
+
+
+
+```
+
+your-repository/
+
+├── src/                           # All source code goes here
+
+│   └── readme.md                  # Project documentation (setup, API endpoints, etc.)
+
+├── prompt/                        # LLM chat exports go here
+
+│   └── llm-chat-export.txt        # Exported LLM/AI assistant conversations
+
+└── test-cases/                    # Test cases documentation goes here
+
+    └── test-cases.txt             # Documentation on how to run each use case
+
+```
+
+
+
+### Required Files
+
+
+
+1. **Complete source code** in the `src/` folder
+
+
+
+2. **readme.md** in the `src/` folder with:
+
+   - Setup instructions
+
+   - Run instructions
+
+   - API endpoints documentation
+
+   - Sample requests and responses
+
+
+
+
+
+3. **LLM Chat Export** - Update `prompt/llm-chat-export.txt`:
+
+   - If you used LLMs/AI assistants, paste your complete exported conversation in this file
+
+   - Replace the placeholder content with your actual LLM chat export
+
+
+
+4. **Test Cases Documentation** - Update `test-cases/test-cases.txt`:
+
+   - Document how to run each use case from the problem (Recognition, Endorsements, Redemption)
+
+   - For each core functionality, include:
+
+     - How to test the feature
+
+     - Steps to execute the test
+
+     - Expected results
+
+   - Replace the placeholder content with your test case documentation
+
+
+
+---
+
+
+
+# How to Submit Your Assignment
+
+
+
+Once you have finished developing the app locally and it is working. Follow these steps to submit your completed assignment:
+
+
+
+1. **Clone the repository**:
+
+   ```bash
+
+   git clone https://github.com/raso-jr/ai-coding-round.git
+
+   cd ai-coding-round
+
+   ```
+
+
+
+2. **Add your code** to the cloned repository:
+
+   - Place all your source code in the `src/` folder
+
+   - Update `src/readme.md` with your project documentation
+
+   - Update `prompt/llm-chat-export.txt` with your LLM chat export (if applicable)
+
+   - Update `test-cases/test-cases.txt` with your test case documentation
+
+
+
+3. **Create a public GitHub repository** with the following naming format:
+
+   ```
+
+   firstname-lastname-collegeid
+
+   ```
+
+   Example: `phunsuk-wangdu-2022CS001`
+
+   
+
+   - Go to GitHub and create a new repository
+
+   - **Make it public**
+
+   - Do not initialize with a README (you already have one from the cloned repo)
+
+
+
+4. **Verify all required files** are included:
+
+   - Complete source code in `src/`
+
+   - `src/readme.md` updated with setup, run instructions, and API documentation
+
+   - Sample requests (cURL/Postman) with example responses (can be in `src/readme.md`)
+
+   - `prompt/llm-chat-export.txt` updated with your LLM chat export (if you used LLMs)
+
+   - `test-cases/test-cases.txt` updated with documentation on how to run each use case
+
+
+
+5. **Verify your application** runs locally and is ready to demo
+
+
+
+6. **Push your code to your GitHub repository**:
+
+   ```bash
+
+   git remote remove origin
+
+   git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+
+   git add .
+
+   git commit -m "Initial submission"
+
+   git push -u origin main
+
+   ```
+
+   Replace `YOUR_USERNAME` and `YOUR_REPO_NAME` with your GitHub username and repository name.
+
+
+
+7. **Share your repository link**:
+
+   - Fill in the [Google form](https://forms.gle/rjogrkweA6WTqvbq7) with relevant info
+
+   - Submit your repository URL in the form: `https://github.com/YOUR_USERNAME/YOUR_REPO_NAME`
+
+
+
+---
+
+
+
+***Remember: You are using LLMs and they hallucinate. Your ability to explain the code, think logically, and design effectively will be the key focus.***
+
+
+
+***Good Luck!***
+
+
+
+
+
+
+
+my main programming language is python and use sqllite for database , Give me prompt that i can give to my vs code copilot using gemini-2.5-pro , in which i would be giving the above instructions in readme.md . Break down the task into simpler steps so the model won't hallucinate.
+
+Here is a comprehensive, step-by-step prompt you can provide to your AI assistant (like VS Code Copilot) to build the "Boostly" application.
+
+This prompt is designed to be given in one go. It breaks down the entire problem into logical, sequential steps, starting with data models and moving through API implementation and documentation. This structure helps the AI follow the logic and reduces the chance of errors.
+
+Prompt for AI Assistant
+You are an expert Python developer specializing in building REST APIs. Your task is to build a complete "Boostly" peer-recognition application using Flask, Flask-SQLAlchemy, and SQLite.
+
+We will build this application step-by-step. Please provide the code for each step. All data must be persisted in the SQLite database.
+
+Step 1: Project Setup and Database Models
+First, let's define the project structure and the database models. Create a file src/models.py.
+
+We need three models: Student, Recognition, and Endorsement.
+
+Student Model:
+
+id (Integer, Primary Key)
+
+username (String, Unique, Not Nullable)
+
+email (String, Unique, Not Nullable)
+
+redeemable_credits (Integer, Not Nullable, Default: 0) -> This is the balance they have received and can redeem.
+
+sending_credits (Integer, Not Nullable, Default: 100) -> This is their monthly allowance to give to others.
+
+Relationships:
+
+recognitions_sent (one-to-many with Recognition, back-populates sender)
+
+recognitions_received (one-to-many with Recognition, back-populates receiver)
+
+endorsements_given (one-to-many with Endorsement, back-populates endorser)
+
+Recognition Model:
+
+id (Integer, Primary Key)
+
+message (String, Nullable)
+
+credits (Integer, Not Nullable)
+
+timestamp (DateTime, Not Nullable, Default: datetime.utcnow)
+
+sender_id (Integer, Foreign Key to student.id)
+
+receiver_id (Integer, Foreign Key to student.id)
+
+Relationships:
+
+sender (many-to-one with Student, back-populates recognitions_sent)
+
+receiver (many-to-one with Student, back-populates recognitions_received)
+
+endorsements (one-to-many with Endorsement, back-populates recognition, cascade delete)
+
+Endorsement Model:
+
+id (Integer, Primary Key)
+
+endorser_id (Integer, Foreign Key to student.id)
+
+recognition_id (Integer, Foreign Key to recognition.id)
+
+timestamp (DateTime, Not Nullable, Default: datetime.utcnow)
+
+Relationships:
+
+endorser (many-to-one with Student, back-populates endorsements_given)
+
+recognition (many-to-one with Recognition, back-populates endorsements)
+
+Crucial: Add a UniqueConstraint('endorser_id', 'recognition_id', name='uq_endorsement') to ensure a user can only endorse a specific recognition once.
+
+Please generate the code for src/models.py with these models and all necessary imports (including db from a shared app context).
+
+Step 2: Flask App and Core API Implementation
+Now, create the main application file, src/app.py.
+
+This file should:
+
+Initialize the Flask app.
+
+Configure it to use a SQLite database (e.g., boostly.db).
+
+Initialize Flask-SQLAlchemy with the app.
+
+Import the models from models.py.
+
+Create a command or function to initialize the database (db.create_all()).
+
+Next, let's implement the API endpoints for the core functionality.
+
+2a. Student Management (for testing):
+
+POST /students: Create a new student. (Body: username, email)
+
+GET /students/<id>: Get a student's details, including their redeemable_credits and sending_credits.
+
+2b. Core Feature 1: Recognition
+
+POST /recognitions: Create a new recognition and transfer credits.
+
+Input Body: sender_id, receiver_id, credits (int), message (string).
+
+Business Logic:
+
+Validate input: credits must be > 0.
+
+Check business rule: sender_id must not be equal to receiver_id. Return a 400 error if they are.
+
+Find the sender and receiver students. Return a 404 if not found.
+
+Check sender's balance: sender.sending_credits must be >= credits. Return a 400 error if they have insufficient credits.
+
+Perform the transfer in a database transaction:
+
+sender.sending_credits -= credits
+
+receiver.redeemable_credits += credits
+
+Create a new Recognition object with the details.
+
+Add all changes to the session and commit.
+
+Return the new recognition object (or a success message) with status 201.
+
+2c. Core Feature 2: Endorsements
+
+POST /endorsements: Endorse an existing recognition.
+
+Input Body: endorser_id, recognition_id.
+
+Business Logic:
+
+Check that the endorser and recognition exist.
+
+Create a new Endorsement object.
+
+Add and commit it.
+
+Use a try...except block to catch the IntegrityError from the UniqueConstraint. If it fails (meaning a duplicate), return a 409 Conflict error with a message like "You have already endorsed this recognition."
+
+If successful, return a success message with status 201.
+
+2d. Core Feature 3: Redemption
+
+POST /redeem: Redeem received credits for a voucher.
+
+Input Body: student_id, credits_to_redeem.
+
+Business Logic:
+
+Find the student.
+
+Check redemption balance: student.redeemable_credits must be >= credits_to_redeem. Return a 400 error if insufficient.
+
+Calculate the voucher value: voucher_value_inr = credits_to_redeem * 5.
+
+In a database transaction:
+
+student.redeemable_credits -= credits_to_redeem
+
+Commit the change.
+
+Return a 200 OK response with the voucher_value_inr and the student's new redeemable_credits balance.
+
+Please generate the code for src/app.py with these endpoints.
+
+Step 3: Step-Up Challenge 1 - Credit Reset Scheduler
+Now, let's add the automatic monthly credit reset. We'll use the APScheduler library for this.
+
+Add APScheduler to the Flask app configuration in src/app.py.
+
+Create a function named reset_monthly_credits().
+
+Business Logic for reset_monthly_credits():
+
+This function should be run within an app context (with app.app_context():).
+
+Get all students from the database.
+
+Loop through each student:
+
+Calculate the carry-forward amount: carry_over = min(student.sending_credits, 50).
+
+Set the student's new sending_credits balance: student.sending_credits = 100 + carry_over.
+
+Commit all the changes to the database.
+
+Print a log message (e.g., "Monthly credit reset complete.").
+
+Configure APScheduler to run this reset_monthly_credits job at the start of every month (e.g., cron trigger with day=1, hour=0, minute=0).
+
+Start the scheduler when the app runs.
+
+Please show the modifications needed in src/app.py to add and configure APScheduler.
+
+Step 4: Step-Up Challenge 2 - Leaderboard Endpoint
+Let's implement the GET /leaderboard endpoint in src/app.py.
+
+Endpoint: GET /leaderboard
+
+Query Parameter: limit (optional, default to 10).
+
+Business Logic:
+
+This endpoint needs to return a list of students ranked by total credits received (descending), and then by student.id (ascending) as a tie-breaker.
+
+The data for each student must include:
+
+student_id
+
+username
+
+total_credits_received (Sum of credits from all their received recognitions)
+
+total_recognitions_received (Count of all their received recognitions)
+
+total_endorsements_received (Count of all endorsements on all their received recognitions)
+
+This requires a complex SQLAlchemy query. You will need to:
+
+Start with the Student model.
+
+Join with Recognition (on receiver_id).
+
+Join with Endorsement (on recognition_id).
+
+Use func.sum() for Recognition.credits to get total_credits_received.
+
+Use func.count(distinct(Recognition.id)) for total_recognitions_received.
+
+Use func.count(distinct(Endorsement.id)) for total_endorsements_received.
+
+Group by Student.id and Student.username.
+
+Order by total_credits_received.desc() and Student.id.asc().
+
+Apply the limit.
+
+Format this data into a clean JSON list and return it.
+
+Please add this endpoint to src/app.py.
+
+Step 5: Documentation Generation
+Based on all the code you've written, please generate the content for the required documentation files.
+
+1. src/readme.md Generate a README.md file that includes:
+
+Project Title: Boostly
+
+Setup Instructions: How to create a virtual environment, install requirements (Flask, Flask-SQLAlchemy, APScheduler), and initialize the database (flask --app app db-create-all or similar custom command).
+
+Run Instructions: How to run the Flask app (flask --app app run).
+
+API Endpoints: A full list of all endpoints we created. For each endpoint, provide:
+
+The Method and URL (e.g., POST /students).
+
+A brief description.
+
+A sample cURL request with a JSON body (if needed).
+
+A sample JSON success response.
+
+A sample JSON error response (if applicable, e.g., for insufficient credits).
+
+2. test-cases/test-cases.txt Generate a plain text file documenting how to manually test each use case. This should be a clear, step-by-step guide.
+
+Use Case 1: Recognition
+
+Test: Successful recognition
+
+Test: Failed recognition (self-recognition)
+
+Test: Failed recognition (insufficient sending_credits)
+
+Use Case 2: Endorsements
+
+Test: Successful endorsement
+
+Test: Failed endorsement (duplicate)
+
+Use Case 3: Redemption
+
+Test: Successful redemption
+
+Test: Failed redemption (insufficient redeemable_credits)
+
+Use Case 4: Leaderboard
+
+Test: Verify leaderboard ranking and stats.
+
+Use Case 5: Credit Reset
+
+Test: Manually trigger reset (if possible) or describe how to check after the 1st of the month. Include a test for the carry-forward rule.
+
+For each test, describe the steps, the cURL command to use, and the expected result (e.g., "Check GET /students/1 and verify sending_credits is now 80.").
+
+give me in format that i can directly copy paste the prompt in text box
+
+You are an expert Python developer specializing in building REST APIs. Your task is to build a complete "Boostly" peer-recognition application using Flask, Flask-SQLAlchemy, and SQLite.
+
+We will build this application step-by-step. Please provide the code for each step. All data must be persisted in the SQLite database.
+
+---
+
+### Step 1: Project Setup and Database Models
+
+First, let's define the project structure and the database models. Create a file `src/models.py`.
+
+We need three models: `Student`, `Recognition`, and `Endorsement`.
+
+1.  **Student Model:**
+    * `id` (Integer, Primary Key)
+    * `username` (String, Unique, Not Nullable)
+    * `email` (String, Unique, Not Nullable)
+    * `redeemable_credits` (Integer, Not Nullable, Default: 0) -> This is the balance they have *received* and can redeem.
+    * `sending_credits` (Integer, Not Nullable, Default: 100) -> This is their monthly allowance to *give* to others.
+    * Relationships:
+        * `recognitions_sent` (one-to-many with `Recognition`, back-populates `sender`)
+        * `recognitions_received` (one-to-many with `Recognition`, back-populates `receiver`)
+        * `endorsements_given` (one-to-many with `Endorsement`, back-populates `endorser`)
+
+2.  **Recognition Model:**
+    * `id` (Integer, Primary Key)
+    * `message` (String, Nullable)
+    * `credits` (Integer, Not Nullable)
+    * `timestamp` (DateTime, Not Nullable, Default: `datetime.utcnow`)
+    * `sender_id` (Integer, Foreign Key to `student.id`)
+    * `receiver_id` (Integer, Foreign Key to `student.id`)
+    * Relationships:
+        * `sender` (many-to-one with `Student`, back-populates `recognitions_sent`)
+        * `receiver` (many-to-one with `Student`, back-populates `recognitions_received`)
+        * `endorsements` (one-to-many with `Endorsement`, back-populates `recognition`, cascade delete)
+
+3.  **Endorsement Model:**
+    * `id` (Integer, Primary Key)
+    * `endorser_id` (Integer, Foreign Key to `student.id`)
+    * `recognition_id` (Integer, Foreign Key to `recognition.id`)
+    * `timestamp` (DateTime, Not Nullable, Default: `datetime.utcnow`)
+    * Relationships:
+        * `endorser` (many-to-one with `Student`, back-populates `endorsements_given`)
+        * `recognition` (many-to-one with `Recognition`, back-populates `endorsements`)
+    * **Crucial:** Add a `UniqueConstraint('endorser_id', 'recognition_id', name='uq_endorsement')` to ensure a user can only endorse a specific recognition once.
+
+Please generate the code for `src/models.py` with these models and all necessary imports (including `db` from a shared app context).
+
+---
+
+### Step 2: Flask App and Core API Implementation
+
+Now, create the main application file, `src/app.py`.
+
+This file should:
+1.  Initialize the Flask app.
+2.  Configure it to use a SQLite database (e.g., `boostly.db`).
+3.  Initialize Flask-SQLAlchemy with the app.
+4.  Import the models from `models.py`.
+5.  Create a command or function to initialize the database (`db.create_all()`).
+
+Next, let's implement the API endpoints for the core functionality.
+
+**2a. Student Management (for testing):**
+* `POST /students`: Create a new student. (Body: `username`, `email`)
+* `GET /students/<id>`: Get a student's details, including their `redeemable_credits` and `sending_credits`.
+
+**2b. Core Feature 1: Recognition**
+* `POST /recognitions`: Create a new recognition and transfer credits.
+* **Input Body:** `sender_id`, `receiver_id`, `credits` (int), `message` (string).
+* **Business Logic:**
+    1.  Validate input: `credits` must be > 0.
+    2.  Check business rule: `sender_id` must not be equal to `receiver_id`. Return a 400 error if they are.
+    3.  Find the `sender` and `receiver` students. Return a 404 if not found.
+    4.  Check sender's balance: `sender.sending_credits` must be `>= credits`. Return a 400 error if they have insufficient credits.
+    5.  Perform the transfer **in a database transaction**:
+        * `sender.sending_credits -= credits`
+        * `receiver.redeemable_credits += credits`
+        * Create a new `Recognition` object with the details.
+        * Add all changes to the session and commit.
+    6.  Return the new recognition object (or a success message) with status 201.
+
+**2c. Core Feature 2: Endorsements**
+* `POST /endorsements`: Endorse an existing recognition.
+* **Input Body:** `endorser_id`, `recognition_id`.
+* **Business Logic:**
+    1.  Check that the `endorser` and `recognition` exist.
+    2.  Create a new `Endorsement` object.
+    3.  Add and commit it.
+    4.  Use a `try...except` block to catch the `IntegrityError` from the `UniqueConstraint`. If it fails (meaning a duplicate), return a 409 Conflict error with a message like "You have already endorsed this recognition."
+    5.  If successful, return a success message with status 201.
+
+**2d. Core Feature 3: Redemption**
+* `POST /redeem`: Redeem received credits for a voucher.
+* **Input Body:** `student_id`, `credits_to_redeem`.
+* **Business Logic:**
+    1.  Find the `student`.
+    2.  Check redemption balance: `student.redeemable_credits` must be `>= credits_to_redeem`. Return a 400 error if insufficient.
+    3.  Calculate the voucher value: `voucher_value_inr = credits_to_redeem * 5`.
+    4.  **In a database transaction**:
+        * `student.redeemable_credits -= credits_to_redeem`
+        * Commit the change.
+    5.  Return a 200 OK response with the `voucher_value_inr` and the student's new `redeemable_credits` balance.
+
+Please generate the code for `src/app.py` with these endpoints.
+
+---
+
+### Step 3: Step-Up Challenge 1 - Credit Reset Scheduler
+
+Now, let's add the automatic monthly credit reset. We'll use the **APScheduler** library for this.
+
+1.  Add `APScheduler` to the Flask app configuration in `src/app.py`.
+2.  Create a function named `reset_monthly_credits()`.
+3.  **Business Logic for `reset_monthly_credits()`:**
+    * This function should be run within an app context (`with app.app_context():`).
+    * Get *all* students from the database.
+    * Loop through each student:
+        * Calculate the carry-forward amount: `carry_over = min(student.sending_credits, 50)`.
+        * Set the student's new `sending_credits` balance: `student.sending_credits = 100 + carry_over`.
+    * Commit all the changes to the database.
+    * Print a log message (e.g., "Monthly credit reset complete.").
+4.  Configure `APScheduler` to run this `reset_monthly_credits` job at the start of every month (e.g., cron trigger with `day=1, hour=0, minute=0`).
+5.  Start the scheduler when the app runs.
+
+Please show the modifications needed in `src/app.py` to add and configure `APScheduler`.
+
+---
+
+### Step 4: Step-Up Challenge 2 - Leaderboard Endpoint
+
+Let's implement the `GET /leaderboard` endpoint in `src/app.py`.
+
+* **Endpoint:** `GET /leaderboard`
+* **Query Parameter:** `limit` (optional, default to 10).
+* **Business Logic:**
+    1.  This endpoint needs to return a list of students ranked by **total credits received** (descending), and then by `student.id` (ascending) as a tie-breaker.
+    2.  The data for each student must include:
+        * `student_id`
+        * `username`
+        * `total_credits_received` (Sum of `credits` from all their *received* recognitions)
+        * `total_recognitions_received` (Count of all their *received* recognitions)
+        * `total_endorsements_received` (Count of all endorsements on all their *received* recognitions)
+    3.  This requires a complex SQLAlchemy query. You will need to:
+        * Start with the `Student` model.
+        * Join with `Recognition` (on `receiver_id`).
+        * Join with `Endorsement` (on `recognition_id`).
+        * Use `func.sum()` for `Recognition.credits` to get `total_credits_received`.
+        * Use `func.count(distinct(Recognition.id))` for `total_recognitions_received`.
+        * Use `func.count(distinct(Endorsement.id))` for `total_endorsements_received`.
+        * Group by `Student.id` and `Student.username`.
+        * Order by `total_credits_received.desc()` and `Student.id.asc()`.
+        * Apply the `limit`.
+    4.  Format this data into a clean JSON list and return it.
+
+Please add this endpoint to `src/app.py`.
+
+---
+
+### Step 5: Documentation Generation
+
+Based on all the code you've written, please generate the content for the required documentation files.
+
+**1. `src/readme.md`**
+Generate a README.md file that includes:
+* **Project Title:** Boostly
+* **Setup Instructions:** How to create a virtual environment, install requirements (Flask, Flask-SQLAlchemy, APScheduler), and initialize the database (`flask --app app db-create-all` or similar custom command).
+* **Run Instructions:** How to run the Flask app (`flask --app app run`).
+* **API Endpoints:** A full list of all endpoints we created. For each endpoint, provide:
+    * The Method and URL (e.g., `POST /students`).
+    * A brief description.
+    * A sample **cURL request** with a JSON body (if needed).
+    * A sample **JSON success response**.
+    * A sample **JSON error response** (if applicable, e.g., for insufficient credits).
+
+**2. `test-cases/test-cases.txt`**
+Generate a plain text file documenting how to manually test each use case. This should be a clear, step-by-step guide.
+
+* **Use Case 1: Recognition**
+    * **Test:** Successful recognition
+    * **Test:** Failed recognition (self-recognition)
+    * **Test:** Failed recognition (insufficient `sending_credits`)
+* **Use Case 2: Endorsements**
+    * **Test:** Successful endorsement
+    * **Test:** Failed endorsement (duplicate)
+* **Use Case 3: Redemption**
+    * **Test:** Successful redemption
+    * **Test:** Failed redemption (insufficient `redeemable_credits`)
+* **Use Case 4: Leaderboard**
+    * **Test:** Verify leaderboard ranking and stats.
+* **Use Case 5: Credit Reset**
+    * **Test:** Manually trigger reset (if possible) or describe how to check after the 1st of the month. Include a test for the carry-forward rule.
+
+For each test, describe the steps, the cURL command to use, and the expected result (e.g., "Check `GET /students/1` and verify `sending_credits` is now 80.").
+
+
+
+
+Of course. As an expert Python developer, I will build the "Boostly" peer-recognition application for you step-by-step.
+
+First, I will create a src directory for our source code.
+
+Created src
+
+Defining the Database Structure
+Created models.py
+
+Constructing Core Components
+Created app.py
+
+Defining Project Scope
+Created readme.md
+
+Created test-cases
+
+Created test-cases.txt
+
+Analyzing Development Completion
+I have created the complete "Boostly" peer-recognition application as requested.
+
+Here is a summary of the files created and their purpose:
+
+models.py: Contains the SQLAlchemy database models for Student, Recognition, and Endorsement, defining the structure and relationships of the application's data.
+
+app.py: The main Flask application file. It includes:
+
+The Flask app and database configuration.
+All API endpoints for managing students, creating recognitions, making endorsements, and redeeming credits.
+The APScheduler logic to automatically reset sending credits on the first day of each month.
+The complex leaderboard query to rank students.
+readme.md: A detailed documentation file with instructions on how to set up the environment, install dependencies, initialize the database, and run the application. It also provides a full API reference with cURL examples for every endpoint.
+
+test-cases.txt: A manual testing guide with step-by-step instructions and cURL commands to verify the functionality of each feature, including success and failure scenarios.
+
+You can now proceed with setting up the project by following the instructions in readme.md.
