@@ -1,9 +1,126 @@
-Test Cases Documentation
+# Boostly API - Manual Test Cases
 
-Replace this file with documentation on how to run each use case from the problem.
+This document provides step-by-step instructions for manually testing the Boostly API's core functionalities using cURL.
 
-For each core functionality (Recognition, Endorsements, Redemption), document:
-- How to test the feature
-- Steps to execute the test
-- Expected results
+**Prerequisites:**
+1. The Flask application is running.
+2. The database has been initialized (`flask db-create-all`).
+3. You have a command-line tool like cURL.
 
+---
+
+### Initial Setup: Create Test Users
+Before testing the core features, create a few users to interact with.
+
+**Steps to Execute:**
+1.  Create "alice":
+    ```bash
+    curl -X POST http://127.0.0.1:5000/students -H "Content-Type: application/json" -d '{"username": "alice", "email": "alice@example.com"}'
+    ```
+2.  Create "bob":
+    ```bash
+    curl -X POST http://127.0.0.1:5000/students -H "Content-Type: application/json" -d '{"username": "bob", "email": "bob@example.com"}'
+    ```
+3.  Create "charlie":
+    ```bash
+    curl -X POST http://127.0.0.1:5000/students -H "Content-Type: application/json" -d '{"username": "charlie", "email": "charlie@example.com"}'
+    ```
+
+**Expected Results:**
+- Each command should return a `201 Created` status and a JSON object for the newly created student, each with a unique ID (1, 2, 3).
+
+---
+
+### 1. Recognition Feature
+
+**How to Test:**
+We will test three scenarios: a successful credit transfer, an invalid attempt to send credits to oneself, and an attempt to send more credits than available.
+
+#### Test 1.1: Successful Recognition
+*   **Steps to Execute:**
+    1.  Alice (ID 1) sends 20 credits to Bob (ID 2).
+        ```bash
+        curl -X POST http://127.0.0.1:5000/recognitions -H "Content-Type: application/json" -d '{"sender_id": 1, "receiver_id": 2, "credits": 20, "message": "Great teamwork!"}'
+        ```
+    2.  Check Alice's and Bob's updated balances.
+        ```bash
+        curl http://127.0.0.1:5000/students/1
+        curl http://127.0.0.1:5000/students/2
+        ```
+*   **Expected Results:**
+    - The recognition command returns a `201 Created` status with the recognition details.
+    - Alice's (`/students/1`) `sending_credits` should be `80`.
+    - Bob's (`/students/2`) `redeemable_credits` should be `20`.
+
+#### Test 1.2: Failed Recognition (Self-Recognition)
+*   **Steps to Execute:**
+    1.  Alice (ID 1) attempts to send credits to herself.
+        ```bash
+        curl -X POST http://127.0.0.1:5000/recognitions -H "Content-Type: application/json" -d '{"sender_id": 1, "receiver_id": 1, "credits": 10}'
+        ```
+*   **Expected Results:**
+    - The command returns a `400 Bad Request` status with the error message: `{"error": "Sender and receiver cannot be the same person"}`.
+
+#### Test 1.3: Failed Recognition (Insufficient Credits)
+*   **Steps to Execute:**
+    1.  Alice (who has 80 credits left) attempts to send 90 credits.
+        ```bash
+        curl -X POST http://127.0.0.1:5000/recognitions -H "Content-Type: application/json" -d '{"sender_id": 1, "receiver_id": 2, "credits": 90}'
+        ```
+*   **Expected Results:**
+    - The command returns a `400 Bad Request` status with the error message: `{"error": "Insufficient sending credits"}`.
+
+---
+
+### 2. Endorsements Feature
+
+**How to Test:**
+We will test a successful endorsement and a failed duplicate endorsement. This assumes the successful recognition from Test 1.1 created a recognition with ID 1.
+
+#### Test 2.1: Successful Endorsement
+*   **Steps to Execute:**
+    1.  Charlie (ID 3) endorses the recognition Alice gave to Bob (Recognition ID 1).
+        ```bash
+        curl -X POST http://127.0.0.1:5000/endorsements -H "Content-Type: application/json" -d '{"endorser_id": 3, "recognition_id": 1}'
+        ```
+*   **Expected Results:**
+    - The command returns a `201 Created` status with the message: `{"message": "Endorsement successful"}`.
+
+#### Test 2.2: Failed Endorsement (Duplicate)
+*   **Steps to Execute:**
+    1.  Charlie (ID 3) attempts to endorse the same recognition again.
+        ```bash
+        curl -X POST http://127.0.0.1:5000/endorsements -H "Content-Type: application/json" -d '{"endorser_id": 3, "recognition_id": 1}'
+        ```
+*   **Expected Results:**
+    - The command returns a `409 Conflict` status with the error message: `{"error": "You have already endorsed this recognition"}`.
+
+---
+
+### 3. Redemption Feature
+
+**How to Test:**
+We will test a successful redemption and a failed redemption due to an insufficient balance. Bob has 20 `redeemable_credits` from Test 1.1.
+
+#### Test 3.1: Successful Redemption
+*   **Steps to Execute:**
+    1.  Bob (ID 2) redeems 15 of his 20 credits.
+        ```bash
+        curl -X POST http://127.0.0.1:5000/redeem -H "Content-Type: application/json" -d '{"student_id": 2, "credits_to_redeem": 15}'
+        ```
+    2.  Check Bob's updated balance.
+        ```bash
+        curl http://127.0.0.1:5000/students/2
+        ```
+*   **Expected Results:**
+    - The redeem command returns a `200 OK` status with the voucher value (`"voucher_value_inr": 75`) and his new balance (`"new_redeemable_balance": 5`).
+    - A `GET` request to `/students/2` shows Bob's `redeemable_credits` is now `5`.
+
+#### Test 3.2: Failed Redemption (Insufficient Credits)
+*   **Steps to Execute:**
+    1.  Bob (who has 5 credits left) attempts to redeem 10 credits.
+        ```bash
+        curl -X POST http://127.0.0.1:5000/redeem -H "Content-Type: application/json" -d '{"student_id": 2, "credits_to_redeem": 10}'
+        ```
+*   **Expected Results:**
+    - The command returns a `400 Bad Request` status with the error message: `{"error": "Insufficient redeemable credits"}`.
